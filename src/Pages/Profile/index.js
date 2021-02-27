@@ -1,13 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react";
-import ProfileIntro from "./Components/Profile/ProfileIntro/";
-
+import ProfileIntroSection from "../../Components/Profile/ProfileIntroSection/";
+import ProfilePostsSection from "../../Components/Profile/ProfilePostsSection";
 @observer
 class Profile extends React.Component {
   render() {
     return (
       <>
-        <ProfileIntro />
+        <ProfileIntroSection />
+        <ProfilePostsSection />
       </>
     );
   }

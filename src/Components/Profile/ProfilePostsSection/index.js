@@ -2,14 +2,14 @@ import React from "react";
 import { observer } from "mobx-react";
 
 @observer
-class ProfileIntro extends React.Component {
+class ProfilePostsSection extends React.Component {
   render() {
     return (
       <>
-        <p>ProfileIntro</p>
+        <p>ProfilePostsSection</p>
       </>
     );
   }
 }
 
-export default ProfileIntro;
+export default ProfilePostsSection;
