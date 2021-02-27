@@ -1,9 +1,10 @@
 import axios from "axios";
 
-async export function getRequest(url, config = {}) {
+const urlbase = "https://api.npoint.io/";
+
+async export function get(url, config = {}) {
   try {
-    const response = await axios.get(url);
-    console.log("res:", response);
+    const response = await axios.get(urlbase + url);
     return response;
   } catch (error) {
     return null;

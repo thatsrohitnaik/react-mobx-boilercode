@@ -1,22 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./style.css";
 import { observer } from "mobx-react";
 import Profile from "./Pages/Profile/";
+import { StoreContext } from "./Context/context";
 
-@observer
-class App extends React.Component {
-  render() {
-    const { store } = this.props;
-    return (
-      <>
-        <div>
-          <h1>Hello StackBlitz!"hh|</h1>
-          <p>Start editing to see some magic happen :)</p>
-        </div>
-        <Profile store={store} />
-      </>
-    );
-  }
-}
-
+const App = observer(() => {
+  const store = useContext(StoreContext);
+  store.profileStore.getProfile();
+  console.log(store.profileStore.profile);
+  return (
+    <>
+      {store.profileStore.loading}
+      <Profile />
+    </>
+  );
+});
 export default App;
