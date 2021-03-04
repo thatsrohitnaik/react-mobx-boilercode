@@ -1,13 +1,14 @@
 import { action, observable, toJS, computed } from "mobx";
+import axios from "axios";
 import { get } from "../Utility/rest";
 
 class ProfileStore {
-  @observable profile = {};
+  @observable profile = [];
   @observable loading = "false";
 
-  @action getProfile = async() => {
-    const response = await get("db.json");
-    this.profile = response.data.profile;
+  @action async getProfile() {
+    const response = await get("210c359b9c49ba11612f");
+    this.profile = response.data;
     this.loading = "true";
     console.log(this.loading);
   }
