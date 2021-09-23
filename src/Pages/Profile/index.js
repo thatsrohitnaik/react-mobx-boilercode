@@ -1,23 +1,28 @@
-import React, { useEffect, useContext } from "react";
-import { observer } from "mobx-react";
-import { toJS } from "mobx";
-import ProfileIntroSection from "../../Components/Profile/ProfileIntroSection/";
-import ProfilePostsSection from "../../Components/Profile/ProfilePostsSection";
-import { StoreContext } from "../../Context/context";
+import React, { useEffect, useContext } from 'react';
+import { observer } from 'mobx-react';
+import { toJS } from 'mobx';
+import ProfileIntroSection from '../../Components/Profile/ProfileIntroSection/';
+import ProfilePostsSection from '../../Components/Profile/ProfilePostsSection';
+import { StoreContext } from '../../Context/context';
 
 const Profile = observer((props) => {
-
   useEffect(() => {
-    getProfileFromStore();
-  }, [])
+    // getProfileFromStore();
+    store.profileStore.getProfile();
+    console.log(store.profileStore.profile);
+  }, []);
 
   const store = useContext(StoreContext);
-  const { profileStore: { getProfile, profile: { info = null, posts = null } } } = store;
+
+  //  console.log(store);
+
+  const {
+    profileStore: { getProfile, profile },
+  } = store;
 
   const getProfileFromStore = () => getProfile();
 
-  if(info != null && posts != null){
-
+  if (info != null && posts != null) {
     return (
       <>
         <ProfileIntroSection info={info} />
@@ -26,7 +31,7 @@ const Profile = observer((props) => {
     );
   }
 
-  return null
+  return null;
 });
 
 export default Profile;
