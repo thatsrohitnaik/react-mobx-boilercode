@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { get } from './Utility/rest';
+import { get } from '../Utility/rest';
 
 // const Profile = {
 //   info: String,
@@ -8,7 +8,7 @@ import { get } from './Utility/rest';
 
 class ProfileStore {
   loading = false;
-  profile = { info: any, posts: any };
+  profile = { info: Object, posts: Object };
 
   constructor() {
     makeAutoObservable(this);

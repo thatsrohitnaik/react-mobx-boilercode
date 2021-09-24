@@ -6,27 +6,20 @@ import ProfilePostsSection from '../../Components/Profile/ProfilePostsSection';
 import { StoreContext } from '../../Context/context';
 
 const Profile = observer((props) => {
-  useEffect(() => {
+  const [profile, setProfile] = React.useState({});
+  useEffect(async () => {
     // getProfileFromStore();
-    store.profileStore.getProfile();
-    console.log(store.profileStore.profile);
+    await store.profileStore.getProfile();
+    setProfile(store.profileStore.profile);
   }, []);
 
   const store = useContext(StoreContext);
 
-  //  console.log(store);
-
-  const {
-    profileStore: { getProfile, profile },
-  } = store;
-
-  const getProfileFromStore = () => getProfile();
-
-  if (info != null && posts != null) {
+  if (profile?.info && profile?.posts) {
     return (
       <>
-        <ProfileIntroSection info={info} />
-        <ProfilePostsSection posts={posts} />
+        <ProfileIntroSection info={profile.info} />
+        <ProfilePostsSection posts={profile.posts} />
       </>
     );
   }
