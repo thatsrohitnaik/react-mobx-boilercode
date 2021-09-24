@@ -2,14 +2,15 @@ import { makeAutoObservable } from 'mobx';
 import { get } from './Utility/rest';
 
 const profile = {
-    info: String,
-    posts: String,
-  }
+  info: String,
+  posts: String,
+};
+
 class ProfileStore {
   //profile = {};
 
   loading = false;
-  profile: { info: any, posts: any };
+  profile = { info: any, posts: any };
 
   constructor() {
     makeAutoObservable(this);
