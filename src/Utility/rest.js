@@ -2,7 +2,7 @@ import axios from "axios";
 
 //const urlbase = "https://api.npoint.io/";
 
-const urlbase = window.location.href + "/specs/";
+const urlbase = window.location.origin + "/";
 
 export async function get(url, config = {}) {
   try {
