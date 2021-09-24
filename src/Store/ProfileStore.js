@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { get } from '../Utility/rest';
+import { get, fetchGraphQLQuery } from '../Utility/rest';
 
 // const Profile = {
 //   info: String,
@@ -9,6 +9,8 @@ import { get } from '../Utility/rest';
 class ProfileStore {
   loading = false;
   profile = { info: Object, posts: Object };
+  continents = {};
+  countries = {};
 
   constructor() {
     makeAutoObservable(this);
@@ -19,6 +21,35 @@ class ProfileStore {
     this.profile = response.data.profile;
     this.loading = true;
     console.log(this.loading);
+  };
+
+  getContinents = () => {
+    const query = `query {
+    continents{name, code}
+    }`;
+    const result = fetchGraphQLQuery(query);
+    result.then((data) => {
+      this.continents = data.data;
+    });
+    this.getCountriesInContinent();
+  };
+
+  getCountriesInContinent = () => {
+    const query = `query getCountries($code: ID!){
+      continent(code:$code){
+        countries{
+          name
+        }
+      }
+    }`;
+
+    const variables = { code: 'AS' };
+
+    const result = fetchGraphQLQuery(query, variables);
+    result.then((data) => {
+      this.countries = data.data;
+      console.log('hello', data);
+    });
   };
 }
 

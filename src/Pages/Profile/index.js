@@ -10,10 +10,15 @@ const Profile = observer((props) => {
   useEffect(async () => {
     // getProfileFromStore();
     await store.profileStore.getProfile();
+    store.profileStore.getContinents();
     setProfile(store.profileStore.profile);
   }, []);
 
   const store = useContext(StoreContext);
+
+  console.log(store.profileStore.continents, 'co');
+  console.log(store.profileStore.countries, 'cu');
+
 
   if (profile?.info && profile?.posts) {
     return (
